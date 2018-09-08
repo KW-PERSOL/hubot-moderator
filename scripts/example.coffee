@@ -8,7 +8,6 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
-_ = require 'underscore'
 module.exports = (robot) ->
   robot.hear /明日の朝会の司会者は？/i, (msg) ->
     request = require('request')
