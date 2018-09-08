@@ -8,23 +8,34 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
-_ = require 'underscore'
+# us = require 'underscore'
+# module.exports = (robot) ->
+#   robot.hear /朝会の司会/i, (res) ->
+#     request = require('request')
+#     request.get
+#       url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}",
+#       (err, response, body) ->
+#         members = (member_raw["name"] \
+#           for member_raw in JSON.parse(body)["members"])
+#           res.send "#{us.sample(members)}さんが選ばれました"
+# https://slack.com/api/users.list?token=xoxp-31253277299-31735736007-431177065009-e70f0358d4b46913313a380ceaefdbcc
+
 module.exports = (robot) ->
   robot.hear /朝会の司会/i, (res) ->
-    request = require('request')
-    request.get
-      url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}"
-      , (err, response, body) ->
-        members = (member_raw["name"] \
-          for member_raw in JSON.parse(body)["members"])
-         res.send "#{_.sample(members)}さんが選ばれました"
-
-
-#module.exports = (robot) ->
-# module.exports = (robot) ->
-#   robot.hear /乳酸菌/i, (res) ->
-#     res.send res.random ["ヤクルト","ピルクル","マミー","ジョア","ぐんぐんグルト","ヨーグルッペ","ビックル","Yoo"]
-
+    list = [
+      '渡辺：@kuninao_w',
+      '竹田：@Takeda',
+      '津川：@Akihiko Tsugawa',
+      '合津：@gotsu',
+      '皆川：@jun.minagawa',
+      '鈴木：@Makoto Suzuki',
+      '森：@masaki.mori',
+      '坂岡：@Ryo Sakaoka',
+      '増田：@satoshi',
+      '田中：@Satsuki Tanaka',
+      '梶野：@shinya.kajino'
+    ]
+    res.send res.random list "さんが選ばれました"
 
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
