@@ -8,15 +8,16 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
+_ = require 'underscore'
 module.exports = (robot) ->
-  robot.hear /明日の朝会の司会者は？/i, (msg) ->
+  robot.hear /朝会の司会/i, (res) ->
     request = require('request')
     request.get
       url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}"
       , (err, response, body) ->
         members = (member_raw["name"] \
           for member_raw in JSON.parse(body)["members"])
-        msg.send "#{_.sample(members)}さんが選ばれました"
+         res.send "#{_.sample(members)}さんが選ばれました"
 
 
 #module.exports = (robot) ->
