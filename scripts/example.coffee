@@ -8,10 +8,21 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
-#module.exports = (robot) ->
 module.exports = (robot) ->
-  robot.hear /乳酸菌/i, (res) ->
-    res.send res.random ["ヤクルト","ピルクル","マミー","ジョア","ぐんぐんグルト","ヨーグルッペ","ビックル","Yoo"]
+  robot.respond /select-member/i, (msg) ->
+    request = require('request')
+    request.get
+      url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}"
+      , (err, response, body) ->
+        members = (member_raw["name"] \
+          for member_raw in JSON.parse(body)["members"])
+        msg.send "#{_.sample(members)}さんが選ばれました"
+
+
+#module.exports = (robot) ->
+# module.exports = (robot) ->
+#   robot.hear /乳酸菌/i, (res) ->
+#     res.send res.random ["ヤクルト","ピルクル","マミー","ジョア","ぐんぐんグルト","ヨーグルッペ","ビックル","Yoo"]
 
 
   # robot.hear /badger/i, (res) ->
