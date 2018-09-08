@@ -20,22 +20,53 @@
 #           res.send "#{us.sample(members)}さんが選ばれました"
 # https://slack.com/api/users.list?token=xoxp-31253277299-31735736007-431177065009-e70f0358d4b46913313a380ceaefdbcc
 
+# TRチームのメンバーリスト
+# TODO: SlackAPIから取得できるようにしたい
+list = [
+  '梶野：@shinya.kajino'
+  '合津：@gotsu',
+  '坂岡：@Ryo Sakaoka',
+  '竹田：@Takeda',
+  '田中：@Satsuki Tanaka',
+  '津川：@Akihiko Tsugawa',
+  '鈴木：@Makoto Suzuki',
+  '増田：@satoshi',
+  '皆川：@jun.minagawa',
+  '森：@masaki.mori',
+  '渡辺：@kuninao_w',
+]
+
+list_target = []
+
 module.exports = (robot) ->
+
+  target = ''
+
   robot.hear /朝会の司会/i, (res) ->
-    list = [
-      '渡辺：@kuninao_w',
-      '竹田：@Takeda',
-      '津川：@Akihiko Tsugawa',
-      '合津：@gotsu',
-      '皆川：@jun.minagawa',
-      '鈴木：@Makoto Suzuki',
-      '森：@masaki.mori',
-      '坂岡：@Ryo Sakaoka',
-      '増田：@satoshi',
-      '田中：@Satsuki Tanaka',
-      '梶野：@shinya.kajino'
-    ]
-    res.send res.random list "さんが選ばれました"
+    list_target = list
+    target = res.random list_target
+    res.send target+"さん、お願いします"
+
+  robot.hear /もう一回/i, (res) ->
+    list_target = list
+    target = res.random list_target
+    res.send "もう一回！" + target + "さん、宜しく！"
+    # res.send "確認用" + target
+
+    # if list_target.length > 0
+    #   idx = list_target.indexOf(target)
+    #   res.send "idx: " + idx
+    #   list_target.splice(idx,1)
+    #   res.send "Array: " + list_target
+    # else
+    #   list_target.concat(list)
+
+    # target = res.random list_target
+    # res.send target + "さんが選ばれました"
+
+  robot.hear /リスト/i, (res) ->
+    res.send list_target
+    res.send list
 
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
