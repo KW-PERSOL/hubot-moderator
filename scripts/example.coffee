@@ -33,7 +33,7 @@ list = [
   '@satoshi : 増田',
   '@jun.minagawa : 皆川',
   '@masaki.mori : 森',
-  '@U0XMMMN07 : 渡辺',
+  '<@U0XMMMN07> : 渡辺',
 ]
 
 sentences = [
