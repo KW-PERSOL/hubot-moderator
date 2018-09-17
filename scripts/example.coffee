@@ -23,17 +23,24 @@
 # TRチームのメンバーリスト
 # TODO: SlackAPIから取得できるようにしたい
 list = [
-  '梶野：@shinya.kajino'
-  '合津：@gotsu',
-  '坂岡：@Ryo Sakaoka',
-  '竹田：@Takeda',
-  '田中：@Satsuki Tanaka',
-  '津川：@Akihiko Tsugawa',
-  '鈴木：@Makoto Suzuki',
-  '増田：@satoshi',
-  '皆川：@jun.minagawa',
-  '森：@masaki.mori',
-  '渡辺：@kuninao_w',
+  '@shinya.kajino : 梶野'
+  '@gotsu : 合津：',
+  '@Ryo Sakaoka : 坂岡',
+  '@Takeda : 竹田',
+  '@Satsuki Tanaka : 田中',
+  '@Akihiko Tsugawa : 津川',
+  '@Makoto Suzuki : 鈴木',
+  '@satoshi : 増田',
+  '@jun.minagawa : 皆川',
+  '@masaki.mori : 森',
+  '@kuninao_w : 渡辺',
+]
+
+sentences = [
+  'さん、お願いします！',
+  'さんが選ばれました',
+  'さんなんていかがでしょう',
+  'さん、いってみよう！',
 ]
 
 list_target = []
@@ -44,25 +51,19 @@ module.exports = (robot) ->
 
   robot.hear /朝会の司会/i, (res) ->
     list_target = list
+    sentence_target = sentences
+
     target = res.random list_target
-    res.send target+"さん、お願いします"
+    sentence = res.random sentence_target
+    res.send target + sentence
 
   robot.hear /もう一回/i, (res) ->
     list_target = list
+    sentence_target = sentences
+
     target = res.random list_target
-    res.send "もう一回！" + target + "さん、宜しく！"
-    # res.send "確認用" + target
-
-    # if list_target.length > 0
-    #   idx = list_target.indexOf(target)
-    #   res.send "idx: " + idx
-    #   list_target.splice(idx,1)
-    #   res.send "Array: " + list_target
-    # else
-    #   list_target.concat(list)
-
-    # target = res.random list_target
-    # res.send target + "さんが選ばれました"
+    sentence = res.random sentences
+    res.send "もう一回！" + target + sentence
 
   robot.hear /リスト/i, (res) ->
     res.send list_target
