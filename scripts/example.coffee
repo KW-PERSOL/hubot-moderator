@@ -23,16 +23,16 @@
 # TRチームのメンバーリスト
 # TODO: SlackAPIから取得できるようにしたい
 list = [
-  '@shinya.kajino : 梶野'
-  '@gotsu : 合津：',
-  '@Ryo Sakaoka : 坂岡',
-  '@Hiroshi Takeda : 竹田',
-  '@Satsuki Tanaka : 田中',
-  '@Akihiko Tsugawa : 津川',
-  '@Makoto Suzuki : 鈴木',
-  '@satoshi : 増田',
-  '@jun.minagawa : 皆川',
-  '@masaki.mori : 森',
+  '<@U9Z8LUSKE> : 梶野'
+  '<@U9ZDMDYF5> : 合津',
+  '<@UCLJYUXJ9> : 坂岡',
+  '<@UC0EX08AX> : 竹田',
+  '<@UBGG0EY9E> : 田中',
+  '<@UCL9G4891> : 津川',
+  '<@UCLD4KT7U> : 鈴木',
+  '<@U6X27DK8Q> : 増田',
+  '<@U8PBNND8R> : 皆川',
+  '<@U9YUTDAAV> : 森',
   '<@U0XMMMN07> : 渡辺',
 ]
 
